@@ -1,8 +1,13 @@
-from modules.username import check_profile
+from modules.username import (
+    check_github,
+    check_reddit,
+    check_gitlab,
+    check_hackerone
+)
 
 username = input("Enter username: ")
 
-print(check_profile("GitHub", f"https://github.com/{username}"))
-print(check_profile("Reddit", f"https://reddit.com/user/{username}"))
-print(check_profile("GitLab", f"https://gitlab.com/{username}"))
-print(check_profile("HackerOne", f"https://hackerone.com/{username}"))
+print(f"GitHub:    {check_github(username)}")
+print(f"Reddit:    {check_reddit(username)}")
+print(f"GitLab:    {check_gitlab(username)}")
+print(f"HackerOne: {check_hackerone(username)}")
