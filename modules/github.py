@@ -6,18 +6,19 @@ def check_github(username):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
+        github_data={}
 
         page.goto(url)
         page.pause()
-        name = page.locater(".p-name").inner_text()
-        print(name)
 
         if page.title() == "Page not found · GitHub · GitHub":
-            result = "NOT FOUND"
+            github_data["result"]="NOT FOUND"
         else:
-            result = "FOUND"
-        page.screenshot(path=f"screenshots/{username}.png")    
+            name = page.locator(".p-name").inner_text()
+            github_data["result"]="FOUND"
+            github_data["name"]=name
+            page.screenshot(path=f"screenshots/{username}.png")    
 
         browser.close()
 
-    return result
+    return github_data
