@@ -1,4 +1,4 @@
-from modules.username import check_github
+from modules.github import check_github
 
 username = input("Enter username: ")
 
